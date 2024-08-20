@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import CustomInput from './CustomInput';
 import { getUser, User } from './get-user';
+import { log } from 'console';
 
 function App() {
   const [text, setText] = useState('');
@@ -21,7 +22,7 @@ function App() {
 
   return (
     <div>
-      {user ? <p>Username: {user.name}</p> : null}
+      {user && <p>Username: {user.name}</p>}
       <CustomInput value={text} onChange={handleChange}>
         Input:
       </CustomInput>

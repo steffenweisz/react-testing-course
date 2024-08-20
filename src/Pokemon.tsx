@@ -16,7 +16,7 @@ type Ability = {
 function Pokemon() {
   const [pokemonName, setPokemonName] = useState('');
   const [pokemonAbilities, setPokemonAbilities] = useState<Ability[]>([]);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<any>(null);
 
   async function handleFetch(event: React.MouseEvent) {
     let result;
@@ -34,22 +34,32 @@ function Pokemon() {
   }
 
   return (
-    <div>
-      <CustomInput value={pokemonName} onChange={handleChange}>
-        Pokemon name:
-      </CustomInput>
-      <button type="button" onClick={handleFetch}>
-        Fetch Pokemon abilities
-      </button>
-      {error && <span>Something went wrong...</span>}
-      <ul>
-        {pokemonAbilities.map((ability) => (
-          <li key={ability.ability.name}>
-            <a href={ability.ability.url}>{ability.ability.name}</a>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <>
+      <div>
+        <CustomInput value={pokemonName} onChange={handleChange}>
+          Pokemon name:
+        </CustomInput>
+        <button type="button" onClick={handleFetch}>
+          Fetch Pokemon abilities
+        </button>
+        {error && <span>Something went wrong...</span>}
+        <ul>
+          {pokemonAbilities.map((ability) => (
+            <li key={ability.ability.name}>
+              <a href={ability.ability.url}>{ability.ability.name}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <p>
+          Find Pokemon names:{' '}
+          <a href="https://www.pokewiki.de/Pok%C3%A9mon-Liste" target="_new">
+            https://www.pokewiki.de/Pokémon-Liste
+          </a>
+        </p>
+      </div>
+    </>
   );
 }
 

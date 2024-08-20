@@ -14,7 +14,7 @@ describe('When everything is OK', () => {
     await waitFor(() => expect(mockGetUser).toHaveBeenCalled());
   });
   test('should render the App component without crashing', () => {
-    screen.debug();
+    // screen.debug();
   });
 
   test('should select the children that is being passed to the CustomInput component', () => {
@@ -29,7 +29,7 @@ describe('When everything is OK', () => {
 
   test('should select a label element by its text', () => {
     screen.getByLabelText('Input:');
-    screen.debug();
+    // screen.debug();
   });
 
   test('should select input element by placeholder text', () => {
@@ -56,7 +56,9 @@ describe('When the component fetches the user successfully', () => {
     mockGetUser.mockResolvedValueOnce({ id: '1', name });
     render(<App />);
     expect(screen.queryByText(/Username/)).toBeNull();
+
     expect(await screen.findByText(/Username/)).toBeInTheDocument();
+
     expect(await screen.findByText(`Username: ${name}`)).toBeInTheDocument();
   });
 });
